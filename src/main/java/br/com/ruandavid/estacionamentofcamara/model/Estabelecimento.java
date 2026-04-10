@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 @Entity
 public class Estabelecimento {
@@ -13,23 +14,26 @@ public class Estabelecimento {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotEmpty(message = "O nome do estabelecimento é obrigatório")
+  @NotEmpty(message = "O nome do estabelecimento é obrigatório!")
   private String nome;
 
-  @NotEmpty(message = "O CNPJ do estabelecimento é obrigatório")
-  @Pattern(regexp = "\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}", message = "O CNPJ deve estar no formato XX.XXX.XXX/XXXX-XX")
+  @NotEmpty(message = "O CNPJ do estabelecimento é obrigatório!")
+  @CNPJ(message = "Formato de CNPJ inválido!")
   private String cnpj;
 
-  @NotEmpty(message = "O endereço do estabelecimento é obrigatório")
+  @NotEmpty(message = "O endereço do estabelecimento é obrigatório!")
   private String endereco;
 
-  @NotEmpty(message = "O telefone do estabelecimento é obrigatório")
-  @Pattern(regexp = "\\+(\\d{2}\\(\\d{2}\\) \\d{4,5}-\\d{4}", message = "O telefone deve estar no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX")
+  @NotEmpty(message = "O telefone do estabelecimento é obrigatório!")
+  @Pattern(
+    regexp = "\\d{13}\\|\\d{12}",
+    message = "O telefone deve ter entre 12 e 13 digitos"
+  )
   private String telefone;
 
-  @NotEmpty(message = "A quantidade de vagas para motos é obrigatória")
+  @NotEmpty(message = "A quantidade de vagas para motos é obrigatória!")
   private int vagasMotos;
 
-  @NotEmpty(message = "A quantidade de vagas para carros é obrigatória")
+  @NotEmpty(message = "A quantidade de vagas para carros é obrigatória!")
   private int vagasCarros;
 }
