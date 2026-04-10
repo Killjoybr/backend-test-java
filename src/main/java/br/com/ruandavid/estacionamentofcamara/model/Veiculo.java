@@ -12,10 +12,18 @@ public class Veiculo {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotEmpty(message = "A placa é obrigatória")
-  private String placa;
+  @NotEmpty(message = "A marca é obrigatória")
+  private String marca;
 
   @NotEmpty(message = "O modelo é obrigatório")
   private String modelo;
 
+  @NotEmpty(message = "A cor é obrigatória")
+  private String cor;
+
+  @NotEmpty(message = "A placa é obrigatória")
+  private String placa;
+
+  @NotEmpty(message = "O tipo é obrigatório")
+  private String tipo;
 }
